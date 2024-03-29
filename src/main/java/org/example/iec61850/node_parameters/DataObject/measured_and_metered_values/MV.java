@@ -12,34 +12,10 @@ import org.example.iec61850.common.modelData.TimeStamp;
 @Setter
 public class MV extends MyData {
     /**
-     * Measured value (Измеренное значение)
-     * */
-    /**
-     * Measured attributes
+     * Measured value
      * */
     private AnalogueValue instMag = new AnalogueValue();
     private AnalogueValue mag = new AnalogueValue();
-//    private Attribute<range> range = new Attribute<>();
-//
-//    private enum range {
-//        NORMAL,
-//        HIGH,
-//        LOW,
-//        HIGH_HIGH,
-//        LOW_LOW
-//    }
-
     private Quality q = new Quality();
     private TimeStamp t = new TimeStamp();
-    /**
-     * Substitution and blocked
-     */
-    //private Attribute<Boolean> subEna = new Attribute<>();
-    //private Attribute<AnalogueValue> subVal = new Attribute<>();
-    //private Quality subQ = new Quality();
-    //private Attribute<String> subID = new Attribute<>();
-    //private Attribute<Boolean> blkEna = new Attribute<>();
-    /**
-     * Configuration, description and extension
-     * ...*/
 }

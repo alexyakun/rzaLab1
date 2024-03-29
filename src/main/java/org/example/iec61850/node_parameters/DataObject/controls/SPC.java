@@ -11,29 +11,9 @@ import org.example.iec61850.common.modelData.TimeStamp;
 @Setter
 public class SPC extends MyData {
     /**
-     * Controllable single point (Управляемая одиночная точка)
+     * Controllable single point
      * */
-    /**
-     * Status and control mirror
-     */
-//    private Originator origin = new Originator();
-//    private Attribute<Integer> ctlNum = new Attribute<>();
     private Attribute<Boolean> stVal = new Attribute<>();
     private Quality q = new Quality();
     private TimeStamp t = new TimeStamp();
-//    private Attribute<Boolean> stSeld = new Attribute<>();
-//    private Attribute<Boolean> opRcvd = new Attribute<>();
-//    private Attribute<Boolean> opOk = new Attribute<>();
-//    private TimeStamp tOpOk = new TimeStamp();
-//    /**
-//     * Substitution and blocked
-//     */
-//    private Attribute<Boolean> subEna = new Attribute<>();
-//    private Attribute<Boolean> subVal = new Attribute<>();
-//    private Quality subQ = new Quality();
-//    private Attribute<String> subID = new Attribute<>();
-//    private Attribute<Boolean> blkEna = new Attribute<>();
-//    /**
-//     * Configuration, description and extension
-//     * ...*/
 }

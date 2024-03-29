@@ -9,30 +9,7 @@ import org.example.iec61850.common.modelData.AnalogueValue;
 @Setter
 public class ASG extends MyData {
     /**
-     * Analogue setting (Аналоговая настройка)
+     * Analogue setting
      * */
-    /**
-     * Setting
-     */
     private AnalogueValue setMag = new AnalogueValue();
-    /**
-     * Status
-     * ...*/
-
-    /**
-     * Substitution and blocked
-     * ...*/
-
-    /**
-     * Configuration, description and extension
-     */
-//    private Unit units = new Unit();
-//    private AnalogueValue minVal = new AnalogueValue();
-//    private AnalogueValue maxVal = new AnalogueValue();
-//    private AnalogueValue stepSize = new AnalogueValue();
-//    private Attribute<String> d = new Attribute<>();
-//    private Attribute<Character.UnicodeBlock> dU = new Attribute<>();
-//    private Attribute<String> cdcNs = new Attribute<>();
-//    private Attribute<String> cdcName = new Attribute<>();
-//    private Attribute<String> dataNs = new Attribute<>();
 }

@@ -31,20 +31,15 @@ public class PTOC extends LN {
     /**
      * Settings
      */
-//    private CURVE TmACrv = new CURVE();
-//    private CSG TmAChr33 = new CSG();
-//    private CSD TmASt = new CSD();
+
             //Start value
     private ASG StrVal = new ASG(); //Уставка по току
     //Time dial multiplier
     private ASG TmMult = new ASG(); //Множитель набора времени
-//    private ING MinOpTmms = new ING();
-//    private ING MaxOpTmms = new ING();
+
     //Operate delay time
     private ING OpDlOpTmms = new ING(); //Уставка по времени
-//    private ENG TypRsCrv = new ENG();
-//    private ING RsDlTmms = new ING();
-//    private ENG DirMod = new ENG();
+
 
     /**
      * Input

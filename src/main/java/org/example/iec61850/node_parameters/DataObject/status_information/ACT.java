@@ -11,11 +11,9 @@ import org.example.iec61850.common.modelData.TimeStamp;
 @Setter
 public class ACT extends MyData {
     /**
-     * Protection activation information (Информация об активации защиты)
+     * Protection activation information
      * */
-    /**
-     * Status
-     */
+
     private Attribute<Boolean> general = new Attribute<>();
     private Attribute<Boolean> phsA = new Attribute<>();
     private Attribute<Boolean> phsB = new Attribute<>();
@@ -23,16 +21,4 @@ public class ACT extends MyData {
     private Attribute<Boolean> neut = new Attribute<>();
     private Quality q = new Quality();
     private TimeStamp t = new TimeStamp();
-//    private Originator origin = new Originator();
-//    private TimeStamp operTmPhsA = new TimeStamp();
-//    private TimeStamp operTmPhsB = new TimeStamp();
-//    private TimeStamp operTmPhsC = new TimeStamp();
-//    /**
-//     * Configuration, description and extension
-//     */
-//    private Attribute<String> d = new Attribute<>();
-//    private Attribute<Character.UnicodeBlock> dU = new Attribute<>();
-//    private Attribute<String> cdcNs = new Attribute<>();
-//    private Attribute<String> cdcName = new Attribute<>();
-//    private Attribute<String> dataNs = new Attribute<>();
 }

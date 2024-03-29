@@ -24,26 +24,13 @@ public class CSWI extends LN {
     /**
      * Status information
      */
-//    //Local or remote key
-//    private SPS LocKey = new SPS();
-//    //Local control behaviour
-//    private SPS Loc = new SPS();
-    //Operation “Open switch”
-//    private ACT OpOpn = new ACT(); //Операция “Разомкнутый выключатель”
+
 //    //Selection “Open switch”
     private SPS SelOpn = new SPS(); //Выбор “Разомкнутый выключатель”
 //    //Operation “Close switch”
-//    private ACT OpCls = new ACT();
+
     //Selection “Close switch”
     private SPS SelCLs = new SPS(); //Выбор "Замкнутый выключатель"
-    /**
-     * Controls
-     */
-//    //Resettable operation counte
-//    private INC OpCntRs = new INC();
-//    //Switching authority at station level
-//    private SPC LocSta = new SPC();
-    /**Сигналы отключения фаз выключателя*/
     //Switch, general
     private DPC Pos = new DPC();
     //Switch L1
@@ -58,9 +45,8 @@ public class CSWI extends LN {
 
     /**Конструктор для задания начальных значений*/
     public CSWI() {
-//        SelOpn.getStVal().setValue(false);
-//        SelCLs.getStVal().setValue(true);
-
+        SelOpn.getStVal().setValue(false);
+        SelCLs.getStVal().setValue(true);
     }
 
     @Override

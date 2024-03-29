@@ -8,7 +8,7 @@ import org.example.iec61850.common.datatypes.MyData;
 @Setter
 public class Quality extends MyData {
     /**
-     * Quality (Качество)
+     * Quality
      */
     public enum validity {
         GOOD,

@@ -19,8 +19,6 @@ public class LSVS extends LN {
     private final List<MV> out = new ArrayList<>();
     private List<String> cfgFileList = new ArrayList<>();
     private List<String> csvFileList = new ArrayList<>();
-    //private List<Double> kAList = new ArrayList<>(); //Зачем?
-    //private List<Double> kBList = new ArrayList<>(); //Зачем?
     private int analogSignal = 0;
     private int digitalSignal = 0;
     private Iterator<String> scvIterator;
@@ -80,21 +78,7 @@ public class LSVS extends LN {
             this.scvIterator.next();
         }
     }
-    /**
-     * LN: Sampled value subscription Name: LSVS (LN: Выборочное значение Имя подписки: LSVS)
-     * */
-    /**
-     * Status information
-     */
-//    private SPS NdsCom = new SPS();
-//    private SPS St = new SPS();
-//    private SPS SimSt = new SPS();
-//    private INS LastStNum = new INS();
-//    private INS ConfRevNum = new INS();
-    /**
-     * Settings
-     */
-//    private ORG SvCBRef = new ORG();
+
 
 
 }

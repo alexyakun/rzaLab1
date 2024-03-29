@@ -12,11 +12,8 @@ import org.example.iec61850.common.modelData.TimeStamp;
 public class ACD extends MyData {
     /**
      * Directional protection activation information
-     * (Информация об активации направленной защиты)
      * */
-    /**
-     * Status
-     */
+
     private Attribute<Boolean> general = new Attribute<>();
     private Attribute<DirGeneral> dirGeneral = new Attribute<>();
 
@@ -65,16 +62,5 @@ public class ACD extends MyData {
 
     private Quality q = new Quality();
     private TimeStamp t = new TimeStamp();
-//    /**
-//     * Substitution and blocked
-//     * ...*/
-//
-//    /**
-//     * Configuration, description and extension
-//     */
-//    private Attribute<String> d = new Attribute<>();
-//    private Attribute<Character.UnicodeBlock> dU = new Attribute<>();
-//    private Attribute<String> cdcNs = new Attribute<>();
-//    private Attribute<String> cdcName = new Attribute<>();
-//    private Attribute<String> dataNs = new Attribute<>();
+
 }
