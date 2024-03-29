@@ -2,106 +2,83 @@ package org.example.iec61850.lodicalNodes.protection;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.example.iec61850.lodicalNodes.LN;
-import org.example.iec61850.node_parameters.DataObject.controls.INC;
-import org.example.iec61850.node_parameters.DataObject.measured_and_metered_values.WYE;
-import org.example.iec61850.node_parameters.DataObject.settings.*;
-import org.example.iec61850.node_parameters.DataObject.status_information.ACD;
-import org.example.iec61850.node_parameters.DataObject.status_information.ACT;
+import org.example.iec61850.datatypes.settings.ASG;
+import org.example.iec61850.datatypes.settings.ING;
+import org.example.iec61850.lodicalNodes.common.LN;
+import org.example.iec61850.datatypes.controls.INC;
+import org.example.iec61850.datatypes.measuredVal.WYE;
+import org.example.iec61850.datatypes.status.ACD;
+import org.example.iec61850.datatypes.status.ACT;
 
 @Getter
 @Setter
 public class PTOC extends LN {
-    /**
-     * LN: Time overcurrent Name: PTOC (LN: Временная перегрузка по току Название: PTOC)
-     *
-     * Функция, которая срабатывает, когда входной переменный ток превышает заданное значение, и в которой
-     * входной ток и время работы находятся в обратной зависимости на протяжении значительной
-     * части диапазона рабочих характеристик.
-     * */
-    /**
-     * Status information
-     */
-    private ACD Str = new ACD(); //Output: на срабатывание защиты
-    private ACT Op = new ACT(); //Output: на отключение оборудования
-    /**
-     * Controls
-     */
-    private INC OpCntRs = new INC(); //Счетчик операций
-    /**
-     * Settings
-     */
 
-            //Start value
-    private ASG StrVal = new ASG(); //Уставка по току
+    //LN: Time overcurrent Name: PTOC
+    //на срабатывание защиты
+    private ACD Str = new ACD();
+    //на отключение оборудования
+    private ACT Op = new ACT();
+    //Счетчик операций
+    private INC OpCntRs = new INC();
+    //Start value
+    private ASG StrVal = new ASG();
     //Time dial multiplier
-    private ASG TmMult = new ASG(); //Множитель набора времени
-
+    private ASG TmMult = new ASG();
     //Operate delay time
-    private ING OpDlOpTmms = new ING(); //Уставка по времени
+    private ING OpDlOpTmms = new ING();
 
-
-    /**
-     * Input
-     */
+    //INPUT
     private WYE A = new WYE();
 
-    /**Уставка по току*/
-//    private double currentSetpoint = StrVal.getSetMag().getFloatVal().getValue();
 
     public PTOC() {
-        /**Устанавливаем false: означает, что оборудование еще НЕ отключено*/
-        Op.getGeneral().setValue(false); //Управляющее действие
+        Op.getGeneral().setValue(false);
         Op.getPhsA().setValue(false);
         Op.getPhsB().setValue(false);
         Op.getPhsC().setValue(false);
-
-        /**Установка начального набора времени (счетчика операций)*/
         OpCntRs.getStVal().setValue(0);
     }
 
     @Override
     public void process() {
-        /**
-         * Измерение превышение тока заданной уставки в фазах
-         * Если уставка превышена -> True
-         * */
+        //Проверка на срабатывание защиты
         Str.getPhsA().setValue(
-                A.getPhsA().getInstCVal().getMag().getF().getValue() >
+                A.getPhsA().getCVal().getMag().getF().getValue() >
                         StrVal.getSetMag().getF().getValue()
         );
         Str.getPhsB().setValue(
-                A.getPhsB().getInstCVal().getMag().getF().getValue() >
+                A.getPhsB().getCVal().getMag().getF().getValue() >
                         StrVal.getSetMag().getF().getValue()
         );
         Str.getPhsC().setValue(
-                A.getPhsC().getInstCVal().getMag().getF().getValue() >
+                A.getPhsC().getCVal().getMag().getF().getValue() >
                         StrVal.getSetMag().getF().getValue()
         );
+        //Сигнал на отключение
 
-        /**
-         * Если хотя бы в одной фазе зафиксировано превышение уставки, то
-         * необходимо подать сигнал о том, что управляющее действие прервано
-         * */
-        Op.getGeneral().setValue(Str.getPhsA().getValue() || Str.getPhsB().getValue() || Str.getPhsC().getValue());
+        Str.getGeneral().setValue(Str.getPhsA().getValue() || Str.getPhsB().getValue() || Str.getPhsC().getValue());
 
-        /**Запуск выдержки времени, после прерывания управляющего воздействия*/
-        if (Op.getGeneral().getValue()) {
-            OpCntRs.getStVal().setValue(OpCntRs.getStVal().getValue() + 1); //Набор времени
+        //выдержка времени
+        if (Str.getGeneral().getValue()) {
+            OpCntRs.getStVal().setValue(OpCntRs.getStVal().getValue() + 1);
         } else {
-            OpCntRs.getStVal().setValue(0); //Сброс счетчика времени
+            OpCntRs.getStVal().setValue(0);
         }
-
-        /**
-         * Отправка сигнала на отключение оборудования:
-         * - уставка по току превышена;
-         * - выдержка времени превышена;
-         * */
-        if (Op.getGeneral().getValue() && (OpCntRs.getStVal().getValue()
+        System.out.println(OpCntRs.getStVal().getValue()
+                * TmMult.getSetMag().getF().getValue());
+        //Отправка сигнала на отключение
+        if (Str.getGeneral().getValue() && (OpCntRs.getStVal().getValue()
                 * TmMult.getSetMag().getF().getValue() > OpDlOpTmms.getSetVal().getValue())) {
             Op.getPhsA().setValue(true);
             Op.getPhsB().setValue(true);
             Op.getPhsC().setValue(true);
+            Op.getGeneral().setValue(true);
+        }else{
+            Op.getPhsA().setValue(false);
+            Op.getPhsB().setValue(false);
+            Op.getPhsC().setValue(false);
+            Op.getGeneral().setValue(false);
         }
     }
 }

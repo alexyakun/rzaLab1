@@ -1,7 +1,7 @@
 package org.example.iec61850.lodicalNodes.hmi;
 
-import org.example.iec61850.common.modelData.Attribute;
-import org.example.iec61850.lodicalNodes.LN;
+import org.example.iec61850.datatypes.common.Attribute;
+import org.example.iec61850.lodicalNodes.common.LN;
 import org.example.iec61850.lodicalNodes.hmi.other.NHMISignal;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;

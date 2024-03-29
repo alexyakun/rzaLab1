@@ -1,7 +1,7 @@
 package org.example.iec61850.lodicalNodes.hmi.other;
 
-import org.example.iec61850.common.modelData.Attribute;
-import org.example.iec61850.lodicalNodes.LN;
+import org.example.iec61850.datatypes.common.Attribute;
+import org.example.iec61850.lodicalNodes.common.LN;
 import org.example.iec61850.lodicalNodes.hmi.NHMI;
 import org.example.iec61850.lodicalNodes.hmi.NHMIP;
 

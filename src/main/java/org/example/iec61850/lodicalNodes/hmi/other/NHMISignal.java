@@ -1,6 +1,6 @@
 package org.example.iec61850.lodicalNodes.hmi.other;
 
-import org.example.iec61850.common.modelData.Attribute;
+import org.example.iec61850.datatypes.common.Attribute;
 
 public class NHMISignal {
     private final String name;

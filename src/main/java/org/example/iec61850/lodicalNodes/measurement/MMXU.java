@@ -3,18 +3,16 @@ package org.example.iec61850.lodicalNodes.measurement;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.iec61850.Filter.Filter;
-import org.example.iec61850.Filter.Fourier;
-import org.example.iec61850.lodicalNodes.LN;
-import org.example.iec61850.node_parameters.DataObject.measured_and_metered_values.DEL;
-import org.example.iec61850.node_parameters.DataObject.measured_and_metered_values.MV;
-import org.example.iec61850.node_parameters.DataObject.measured_and_metered_values.WYE;
+import org.example.iec61850.Filter.RMS;
+import org.example.iec61850.lodicalNodes.common.LN;
+import org.example.iec61850.datatypes.measuredVal.DEL;
+import org.example.iec61850.datatypes.measuredVal.MV;
+import org.example.iec61850.datatypes.measuredVal.WYE;
 
 @Getter
 @Setter
 public class MMXU extends LN {
-    /**
-     * LN: Measurement Name: MMXU (LN: Название измерения: MMXU)
-     */
+    //LN: Measurement Name: MMXU
     //Total active power (total P)
     private MV TotW = new MV();
     //Total reactive power (total Q)
@@ -43,27 +41,19 @@ public class MMXU extends LN {
     private WYE PF = new WYE();
     //Phase impedance
     private WYE Z = new WYE();
-    public static int bufSize = 80;
-    /**
-     * Input
-     * */
-    public MV IaInst = new MV();
-    public MV IbInst = new MV();
-    public MV IcInst = new MV();
-    /**
-     * Output
-     * */
-
-    /**
-     * Filter (буферы на каждую фазу)
-     * */
-    public final Filter ia = new Fourier(bufSize);
-    public final Filter ib = new Fourier(bufSize);
-    public final Filter ic = new Fourier(bufSize);
+    public static int bufSize = 20;
+    //input
+    public MV iaMV = new MV();
+    public MV ibMV = new MV();
+    public MV icMV = new MV();
+    //output
+    public final Filter ia = new RMS(bufSize);
+    public final Filter ib = new RMS(bufSize);
+    public final Filter ic = new RMS(bufSize);
     @Override
     public void process() {
-        this.ia.process(this.IaInst, A.getPhsA());
-        this.ia.process(this.IbInst, A.getPhsB());
-        this.ia.process(this.IcInst, A.getPhsC());
+        this.ia.process(this.iaMV, A.getPhsA());
+        this.ib.process(this.ibMV, A.getPhsB());
+        this.ic.process(this.icMV, A.getPhsC());
     }
 }
