@@ -48,7 +48,7 @@ public class MMXU extends LN {
     private WYE PF = new WYE();
     //Phase impedance
     private WYE Z = new WYE();
-    public static int bufSize = 160;
+    public static int bufSize = 80;
     //input
     public MV iaMV = new MV();
     public MV ibMV = new MV();

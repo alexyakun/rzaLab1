@@ -4,34 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="73afa7ff-ce4c-4c84-b466-02cd9d288f6e" name="Changes" comment="com">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Main2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Main5.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/MainSv.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/iec61850/Filter/Fourier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/iec61850/XmlTemplate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/iec61850/datatypes/measuredVal/SEQ.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/iec61850/datatypes/settings/ENG.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/iec61850/lodicalNodes/measurement/MSQI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/iec61850/lodicalNodes/measurement/RDIR.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/iec61850/lodicalNodes/protocol/LSVS1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/iec61850/lodicalNodes/protocol/LSVS3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/iec61850/lodicalNodes/protocol/MyPacketListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/iec61850/lodicalNodes/sv/EthernetListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/iec61850/lodicalNodes/sv/SvDecoder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/iec61850/lodicalNodes/sv/SvPacket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/iec61850/utils/CompCal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/iec61850/utils/XmLSerialization.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sour.xml" afterDir="false" />
+    <list default="true" id="73afa7ff-ce4c-4c84-b466-02cd9d288f6e" name="Changes" comment="lr3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/iec61850/datatypes/status/ACD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/iec61850/datatypes/status/ACD.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/iec61850/lodicalNodes/control/CSWI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/iec61850/lodicalNodes/control/CSWI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/iec61850/lodicalNodes/control/XCBR.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/iec61850/lodicalNodes/control/XCBR.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/iec61850/lodicalNodes/measurement/MMXU.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/iec61850/lodicalNodes/measurement/MMXU.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/iec61850/lodicalNodes/protection/PTOC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/iec61850/lodicalNodes/protection/PTOC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/iec61850/lodicalNodes/protocol/LSVS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/iec61850/lodicalNodes/protocol/LSVS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/NoSvStart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/NoSvStart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/iec61850/lodicalNodes/protocol/LSVS.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/iec61850/lodicalNodes/protocol/LSVS3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/iec61850/lodicalNodes/protocol/LSVS3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/iec61850/lodicalNodes/protocol/LSVSsv.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/iec61850/lodicalNodes/protocol/MyPacketListener.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
+        <entry key="$PROJECT_DIR$" value="lab2" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -65,21 +44,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;lab2&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Yakunin/IdeaProjects/rzaLab1/src/main/resources&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "lab3",
+    "last_opened_file_path": "C:/Users/Yakunin/IdeaProjects/rzaLab1/src/main/resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Yakunin\IdeaProjects\rzaLab1\src\main\resources" />
@@ -87,27 +66,14 @@
       <recent name="C:\Users\Yakunin\IdeaProjects\rzaLab1\src\main\java\ru\mpei" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="org.example.iec61850.lodicalNodes.protocol" />
       <recent name="org.example" />
+      <recent name="org.example.iec61850.lodicalNodes.protocol" />
       <recent name="org.example.iec61850.lodicalNodes.protection" />
       <recent name="org.example.iec61850.utils" />
       <recent name="org.example.iec61850.Filter" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main5">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.example.Main" />
-      <module name="rzaLab1" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.example.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.NoSvStart">
     <configuration name="Main2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Main2" />
       <module name="rzaLab1" />
@@ -147,11 +113,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="NoSvStart" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.NoSvStart" />
+      <module name="rzaLab1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SvStart" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.SvStart" />
+      <module name="rzaLab1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main5" />
+        <item itemvalue="Application.NoSvStart" />
+        <item itemvalue="Application.SvStart" />
         <item itemvalue="Application.MainSv" />
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main5" />
         <item itemvalue="Application.Main2" />
       </list>
     </recent_temporary>
@@ -169,6 +162,7 @@
       <workItem from="1714034900670" duration="7144000" />
       <workItem from="1714069446040" duration="41810000" />
       <workItem from="1714137836471" duration="206000" />
+      <workItem from="1715883968898" duration="2157000" />
     </task>
     <task id="LOCAL-00001" summary="fist comm">
       <option name="closed" value="true" />
@@ -194,7 +188,23 @@
       <option name="project" value="LOCAL" />
       <updated>1711713646612</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="full lr2">
+      <option name="closed" value="true" />
+      <created>1715884347310</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1715884347310</updated>
+    </task>
+    <task id="LOCAL-00005" summary="lr3">
+      <option name="closed" value="true" />
+      <created>1715885238093</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1715885238093</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -203,7 +213,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fist comm" />
     <MESSAGE value="com" />
-    <option name="LAST_COMMIT_MESSAGE" value="com" />
+    <MESSAGE value="full lr2" />
+    <MESSAGE value="lr3" />
+    <option name="LAST_COMMIT_MESSAGE" value="lr3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

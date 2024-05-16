@@ -8,20 +8,30 @@ import org.example.iec61850.lodicalNodes.measurement.MMXU;
 import org.example.iec61850.lodicalNodes.measurement.MSQI;
 import org.example.iec61850.lodicalNodes.measurement.RDIR;
 import org.example.iec61850.lodicalNodes.protection.PTOC;
-import org.example.iec61850.lodicalNodes.sv.EthernetListener;
-import org.example.iec61850.lodicalNodes.sv.SvDecoder;
-import org.example.iec61850.lodicalNodes.sv.SvPacket;
+import org.example.iec61850.lodicalNodes.protocol.LSVS;
+
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class NoSvStart {
     private static final List<LN> logicalNode = new ArrayList<>();
-    public static void main(String[] args) {
+    private static String path = "D:\\2mag\\algorithm rza\\lr2\\Opyty\\Опыты\\";
+    private static String name = "KZ1";
+    public static void main(String[] args) throws Exception {
+        LSVS lsvs = new LSVS();
+        lsvs.setPath(path);
+        lsvs.setFileName(name);
+        logicalNode.add(lsvs);
+
         MMXU mmxu = new MMXU();
-        logicalNode.add(mmxu);
+        mmxu.uaMV = lsvs.getOut().get(0);
+        mmxu.ubMV = lsvs.getOut().get(1);
+        mmxu.ucMV = lsvs.getOut().get(2);
+        mmxu.iaMV = lsvs.getOut().get(3);
+        mmxu.ibMV = lsvs.getOut().get(4);
+        mmxu.icMV = lsvs.getOut().get(5);
+
 
 
         logicalNode.add(mmxu);
@@ -41,7 +51,7 @@ public class NoSvStart {
         logicalNode.add(ptoc1);
         ptoc1.getStrVal().getSetMag().getF().setValue(400.0);
         ptoc1.OpDiTmms.getSetVal().setValue(200);
-        ptoc1.getTmMult().getSetMag().getF().setValue(20.0/160);
+        ptoc1.getTmMult().getSetMag().getF().setValue(20.0/80);
         ptoc1.dir = rdir.getDir();
         ptoc1.seq = msqi.SeqA;
         ptoc1.DirMod.getSetVal().setValue(ACD.DirGeneral.BOTH);
@@ -52,7 +62,7 @@ public class NoSvStart {
         logicalNode.add(ptoc2);
         ptoc2.getStrVal().getSetMag().getF().setValue(200.0);
         ptoc2.OpDiTmms.getSetVal().setValue(400);
-        ptoc2.getTmMult().getSetMag().getF().setValue(20.0/160);
+        ptoc2.getTmMult().getSetMag().getF().setValue(20.0/80);
         ptoc2.dir = rdir.getDir();
         ptoc2.seq = msqi.SeqA;
         ptoc2.DirMod.getSetVal().setValue(ACD.DirGeneral.BOTH);
@@ -63,7 +73,7 @@ public class NoSvStart {
         logicalNode.add(ptoc1Dir);
         ptoc1Dir.getStrVal().getSetMag().getF().setValue(400.0);
         ptoc1Dir.OpDiTmms.getSetVal().setValue(200);
-        ptoc1Dir.getTmMult().getSetMag().getF().setValue(20.0 / 160);
+        ptoc1Dir.getTmMult().getSetMag().getF().setValue(20.0 / 80);
         ptoc1Dir.dir = rdir.getDir();
         ptoc1Dir.seq = msqi.SeqA;
         ptoc1Dir.DirMod.getSetVal().setValue(ACD.DirGeneral.FORWARD);
@@ -74,12 +84,34 @@ public class NoSvStart {
         logicalNode.add(ptoc2Dir);
         ptoc2Dir.getStrVal().getSetMag().getF().setValue(200.0);
         ptoc2Dir.OpDiTmms.getSetVal().setValue(400);
-        ptoc2Dir.getTmMult().getSetMag().getF().setValue(20.0 / 160);
+        ptoc2Dir.getTmMult().getSetMag().getF().setValue(20.0 / 80);
         ptoc2Dir.dir = rdir.getDir();
         ptoc2Dir.seq = msqi.SeqA;
         ptoc2Dir.DirMod.getSetVal().setValue(ACD.DirGeneral.FORWARD);
         ptoc2Dir.getAccelEnable().setValue(false);
         ptoc2Dir.accel.setValue(operAccel);
+
+
+//        MMXU mmxu = new MMXU();
+//        lnList.add(mmxu);
+//        mmxu.phsAUInst = lsvc.phsAUInst;
+//        mmxu.phsBUInst = lsvc.phsBUInst;
+//        mmxu.phsCUInst = lsvc.phsCUInst;
+//        mmxu.phsAIInst = lsvc.phsAIInst;
+//        mmxu.phsBIInst = lsvc.phsBIInst;
+//        mmxu.phsCIInst = lsvc.phsCIInst;
+
+
+//        CSWI cswi = new CSWI();
+//        cswi.getOpOpnList().add(ptoc1.getOp());
+//        cswi.getOpOpnList().add(ptoc2.getOp());
+//        cswi.getOpOpnList().add(ptoc3.getOp());
+//        logicalNode.add(cswi);
+//
+//        XCBR xcbr = new XCBR();
+//        xcbr.setPos(cswi.getPos());
+//        logicalNode.add(xcbr);
+
         NHMI nhmi = new NHMI();
         nhmi.addSignals("IA", new NHMISignal("ia", mmxu.iaMV.getInstMag().getF()));
         nhmi.addSignals("IB", new NHMISignal("ib", mmxu.ibMV.getInstMag().getF()));
@@ -131,30 +163,16 @@ public class NoSvStart {
         nhmiPTOC2.addSignals(new NHMISignal("ptocDir2Op", ptoc2Dir.getOp().getGeneral()));
 
 
-        EthernetListener ethernetListener = new EthernetListener();
-        ethernetListener.setNickName("Remote NDIS based Internet Sharing Device");
-        SvDecoder svDecoder = new SvDecoder();
-        AtomicInteger counter= new AtomicInteger();
-        ethernetListener.addListener(packet ->{
-
-            Optional<SvPacket> svPacket = svDecoder.decode(packet);
-            if(svPacket.isPresent()&& counter.get() !=svPacket.get().getSmpCount()){
-                mmxu.uaMV.getInstMag().getF().setValue(svPacket.get().getDataset().getInstUa());
-                mmxu.ubMV.getInstMag().getF().setValue(svPacket.get().getDataset().getInstUb());
-                mmxu.ucMV.getInstMag().getF().setValue(svPacket.get().getDataset().getInstUc());
-                mmxu.iaMV.getInstMag().getF().setValue(svPacket.get().getDataset().getInstIa());
-                mmxu.ibMV.getInstMag().getF().setValue(svPacket.get().getDataset().getInstIb());
-                mmxu.icMV.getInstMag().getF().setValue(svPacket.get().getDataset().getInstIc());
-                for (LN ln : logicalNode) {
-                    ln.process();
-                }
-                counter.set(svPacket.get().getSmpCount());
-            }
-
-
-        });
-        ethernetListener.start();
-
+        NHMI nhmiDigitalSignal = new NHMI();
+        nhmiDigitalSignal.addSignals("Discrete I STR", new NHMISignal("prot_1str", ptoc1.getStr().getGeneral()));
+        nhmiDigitalSignal.addSignals("Discrete I OP", new NHMISignal("prot_1op", ptoc1.getOp().getGeneral()));
+        nhmiDigitalSignal.addSignals("Discrete II STR", new NHMISignal("prot_2str", ptoc2.getStr().getGeneral()));
+        nhmiDigitalSignal.addSignals("Discrete II OP", new NHMISignal("prot_2op", ptoc2.getOp().getGeneral()));
+        logicalNode.add(nhmiDigitalSignal);
+        while (lsvs.hasNext()) {
+            logicalNode.forEach(LN::process);
+            System.out.println();
+        }
     }
-}
 
+}
