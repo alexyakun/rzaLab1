@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<XmlTemplate>
+    <lsvs path="" fileName="">
+    </lsvs>
+    <mmxu></mmxu>
+    <ptoc1 StrVal = "1700.0" TmMult ="1" OpDlOpTmms="0">
+        <StrVal></StrVal>
+        <TmMult></TmMult>
+        <OpDlOpTmms></OpDlOpTmms>
+    </ptoc1 >
+    <ptoc2 StrVal = "600.0" TmMult ="1" OpDlOpTmms="300">
+        <StrVal></StrVal>
+        <TmMult></TmMult>
+        <OpDlOpTmms></OpDlOpTmms>
+    </ptoc2>
+    <ptoc3 StrVal = "355.0" TmMult ="1" OpDlOpTmms="600">
+        <StrVal></StrVal>
+        <TmMult></TmMult>
+        <OpDlOpTmms></OpDlOpTmms>
+    </ptoc3>
+</XmlTemplate>

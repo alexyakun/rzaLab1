@@ -3,14 +3,21 @@ package org.example.iec61850.lodicalNodes.measurement;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.iec61850.Filter.Filter;
+import org.example.iec61850.Filter.Fourier;
 import org.example.iec61850.Filter.RMS;
+import org.example.iec61850.datatypes.common.Vector;
 import org.example.iec61850.lodicalNodes.common.LN;
 import org.example.iec61850.datatypes.measuredVal.DEL;
 import org.example.iec61850.datatypes.measuredVal.MV;
 import org.example.iec61850.datatypes.measuredVal.WYE;
+import org.example.iec61850.utils.CompCal;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 @Getter
 @Setter
+@XmlAccessorType(XmlAccessType.FIELD)
 public class MMXU extends LN {
     //LN: Measurement Name: MMXU
     //Total active power (total P)
@@ -41,19 +48,36 @@ public class MMXU extends LN {
     private WYE PF = new WYE();
     //Phase impedance
     private WYE Z = new WYE();
-    public static int bufSize = 20;
+    public static int bufSize = 160;
     //input
     public MV iaMV = new MV();
     public MV ibMV = new MV();
     public MV icMV = new MV();
+    public MV uaMV = new MV();
+    public MV ubMV = new MV();
+    public MV ucMV = new MV();
     //output
-    public final Filter ia = new RMS(bufSize);
-    public final Filter ib = new RMS(bufSize);
-    public final Filter ic = new RMS(bufSize);
+    public final Filter ia = new Fourier(bufSize);
+    public final Filter ib = new Fourier(bufSize);
+    public final Filter ic = new Fourier(bufSize);
+    public final Filter ua = new Fourier(bufSize);
+    public final Filter ub = new Fourier(bufSize);
+    public final Filter uc = new Fourier(bufSize);
+
     @Override
     public void process() {
         this.ia.process(this.iaMV, A.getPhsA());
         this.ib.process(this.ibMV, A.getPhsB());
         this.ic.process(this.icMV, A.getPhsC());
+        this.ua.process(this.uaMV, PNV.getPhsA());
+        this.ub.process(this.ubMV, PNV.getPhsB());
+        this.uc.process(this.ucMV, PNV.getPhsC());
+        Vector rev = new Vector();
+        rev.getAng().getF().setValue(-Math.PI);
+        rev.getMag().getF().setValue(1.0);
+        PPV.getPhsAB().setInstCVal(CompCal.sum(A.getPhsA().getInstCVal(),CompCal.mult(rev,A.getPhsB().getInstCVal())));
+        PPV.getPhsBC().setInstCVal(CompCal.sum(A.getPhsB().getInstCVal(),CompCal.mult(rev,A.getPhsC().getInstCVal())));
+        PPV.getPhsCA().setInstCVal(CompCal.sum(A.getPhsC().getInstCVal(),CompCal.mult(rev,A.getPhsA().getInstCVal())));
     }
 }
+

@@ -7,11 +7,14 @@ import org.example.iec61850.datatypes.controls.DPC;
 import org.example.iec61850.datatypes.status.ACT;
 import org.example.iec61850.datatypes.status.SPS;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
+@XmlAccessorType(XmlAccessType.FIELD)
 public class CSWI extends LN {
 //LN: Switch controller Name: CSWI
 //    //Selection “Open switch”
