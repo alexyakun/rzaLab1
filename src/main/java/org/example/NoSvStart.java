@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Main5 {
+public class NoSvStart {
     private static final List<LN> logicalNode = new ArrayList<>();
     public static void main(String[] args) {
         MMXU mmxu = new MMXU();
