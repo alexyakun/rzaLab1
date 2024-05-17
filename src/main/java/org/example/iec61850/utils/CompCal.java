@@ -70,6 +70,28 @@ public class CompCal {
         }
         return result;
     }
+    public static  Vector dif(Vector a, Vector b){
+        double realA = a.getMag().getF().getValue()*Math.cos(a.getAng().getF().getValue());
+        double realB = b.getMag().getF().getValue()*Math.cos(b.getAng().getF().getValue());
+        double imA = a.getMag().getF().getValue()*Math.sin(a.getAng().getF().getValue());
+        double imB = b.getMag().getF().getValue()*Math.sin(b.getAng().getF().getValue());
+        double realRes = realA - realB;
+        double imageRes = imA - imB;
+        Vector result = new Vector();
+        result.getMag().getF().setValue(Math.sqrt(realRes*realRes + imageRes*imageRes));
+        if(realRes > 0){
+            result.getAng().getF().setValue(Math.atan(imageRes / realRes));
+        } else if(realRes < 0 && imageRes >= 0){
+            result.getAng().getF().setValue(Math.PI + Math.atan(imageRes / realRes));
+        } else if(realRes < 0 && imageRes < 0){
+            result.getAng().getF().setValue(-Math.PI + Math.atan(imageRes / realRes));
+        } else if(realRes == 0 && imageRes > 0){
+            result.getAng().getF().setValue(Math.PI/2);
+        }else if(realRes == 0 && imageRes < 0){
+            result.getAng().getF().setValue(-Math.PI/2);
+        }
+        return result;
+    }
 
     public static Vector sumAll(List<Vector> elem){
         Vector result = new Vector();

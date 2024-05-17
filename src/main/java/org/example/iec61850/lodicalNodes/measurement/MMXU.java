@@ -73,22 +73,15 @@ public class MMXU extends LN {
         this.ub.process(this.ubMV, PNV.getPhsB());
         this.uc.process(this.ucMV, PNV.getPhsC());
 
-
-        Vector rev = new Vector();
-        rev.getAng().getF().setValue(-Math.PI);
-        rev.getMag().getF().setValue(1.0);
-        PPV.getPhsAB().setInstCVal(CompCal.sum(A.getPhsA().getInstCVal(),CompCal.mult(rev,A.getPhsB().getInstCVal())));
-        PPV.getPhsBC().setInstCVal(CompCal.sum(A.getPhsB().getInstCVal(),CompCal.mult(rev,A.getPhsC().getInstCVal())));
-        PPV.getPhsCA().setInstCVal(CompCal.sum(A.getPhsC().getInstCVal(),CompCal.mult(rev,A.getPhsA().getInstCVal())));
-        Z.getPhsA().setCVal(calcZ(A.getPhsA().getInstCVal(),A.getPhsB().getInstCVal(),PPV.getPhsAB().getInstCVal()));
-        Z.getPhsB().setCVal(calcZ(A.getPhsB().getInstCVal(),A.getPhsC().getInstCVal(),PPV.getPhsBC().getInstCVal()));
-        Z.getPhsC().setCVal(calcZ(A.getPhsC().getInstCVal(),A.getPhsA().getInstCVal(),PPV.getPhsCA().getInstCVal()));
+        PPV.getPhsAB().setInstCVal(CompCal.dif(A.getPhsA().getInstCVal(),A.getPhsB().getInstCVal()));
+        PPV.getPhsBC().setInstCVal(CompCal.dif(A.getPhsB().getInstCVal(),A.getPhsC().getInstCVal()));
+        PPV.getPhsCA().setInstCVal(CompCal.dif(A.getPhsC().getInstCVal(),A.getPhsA().getInstCVal()));
+        Z.getPhsA().setInstCVal(calcZ(A.getPhsA().getInstCVal(),A.getPhsB().getInstCVal(),PPV.getPhsAB().getInstCVal()));
+        Z.getPhsB().setInstCVal(calcZ(A.getPhsB().getInstCVal(),A.getPhsC().getInstCVal(),PPV.getPhsBC().getInstCVal()));
+        Z.getPhsC().setInstCVal(calcZ(A.getPhsC().getInstCVal(),A.getPhsA().getInstCVal(),PPV.getPhsCA().getInstCVal()));
     }
     private Vector calcZ(Vector i1, Vector i2, Vector u){
-        Vector rev = new Vector();
-        rev.getAng().getF().setValue(-Math.PI);
-        rev.getMag().getF().setValue(1.0);
-        Vector difCurrent = CompCal.sum(i1, CompCal.mult(rev, i2));
+        Vector difCurrent = CompCal.dif(i1, i2);
         return CompCal.div(u, difCurrent);
 
     }
