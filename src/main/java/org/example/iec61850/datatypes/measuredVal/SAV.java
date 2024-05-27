@@ -7,5 +7,5 @@ import org.example.iec61850.datatypes.common.MyData;
 @Getter
 @Setter
 public class SAV extends MyData {
-    private AnalogueValue instMag = new AnalogueValue();
+    private AnalogueValue instMag = new AnalogueValue(0.0);
 }

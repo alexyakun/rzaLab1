@@ -10,4 +10,13 @@ public class AnalogueValue extends MyData {
     private Attribute<Integer> i = new Attribute<>();
     //float value
     private Attribute<Double> f = new Attribute<>();
+    public AnalogueValue(){
+
+    }
+    public AnalogueValue(Double f){
+        this.f.setValue(f);
+    }
+    public AnalogueValue(Integer i){
+        this.i.setValue(i);
+    }
 }

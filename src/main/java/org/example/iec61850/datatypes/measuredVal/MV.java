@@ -11,8 +11,9 @@ import org.example.iec61850.datatypes.common.TimeStamp;
 @Setter
 public class MV extends MyData {
     //Measured value
-    private AnalogueValue instMag = new AnalogueValue();
-    private AnalogueValue mag = new AnalogueValue();
+    private AnalogueValue instMag = new AnalogueValue(0.0);
+    private AnalogueValue mag = new AnalogueValue(0.0);
     private Quality q = new Quality();
     private TimeStamp t = new TimeStamp();
+
 }

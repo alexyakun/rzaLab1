@@ -52,7 +52,7 @@ public class MMXU extends LN {
     private WYE Z = new WYE();
 
     private Attribute<Double> timeMult = new Attribute<>();
-    public static int bufSize = 80;
+    public static int bufSize = 20;
     //input
 
     public MV iaMV = new MV();
@@ -97,37 +97,37 @@ public class MMXU extends LN {
         this.ia.process(this.iaMV, A.getPhsA());
         this.ib.process(this.ibMV, A.getPhsB());
         this.ic.process(this.icMV, A.getPhsC());
-        this.ua.process(this.uaMV, PNV.getPhsA());
-        this.ub.process(this.ubMV, PNV.getPhsB());
-        this.uc.process(this.ucMV, PNV.getPhsC());
-
-        PPV.getPhsAB().setInstCVal(CompCal.dif(PNV.getPhsA().getInstCVal(),PNV.getPhsB().getInstCVal()));
-        PPV.getPhsBC().setInstCVal(CompCal.dif(PNV.getPhsB().getInstCVal(),PNV.getPhsC().getInstCVal()));
-        PPV.getPhsCA().setInstCVal(CompCal.dif(PNV.getPhsC().getInstCVal(),PNV.getPhsA().getInstCVal()));
-        Z.getPhsA().setInstCVal(calcZ(A.getPhsA().getInstCVal(),A.getPhsB().getInstCVal(),PPV.getPhsAB().getInstCVal()));
-        Z.getPhsB().setInstCVal(calcZ(A.getPhsB().getInstCVal(),A.getPhsC().getInstCVal(),PPV.getPhsBC().getInstCVal()));
-        Z.getPhsC().setInstCVal(calcZ(A.getPhsC().getInstCVal(),A.getPhsA().getInstCVal(),PPV.getPhsCA().getInstCVal()));
-        double zaMag = Z.getPhsA().getInstCVal().getMag().getF().getValue();
-        double zaAng = Z.getPhsA().getInstCVal().getAng().getF().getValue();
-        double zbMag = Z.getPhsA().getInstCVal().getMag().getF().getValue();
-        double zbAng = Z.getPhsA().getInstCVal().getAng().getF().getValue();
-        double zcMag = Z.getPhsA().getInstCVal().getMag().getF().getValue();
-        double zcAng = Z.getPhsA().getInstCVal().getAng().getF().getValue();
-        this.zABxMV.getInstMag().getF().setValue(zaMag*Math.cos(zaAng));
-
-        this.zAByMV.getInstMag().getF().setValue(zaMag*Math.sin(zaAng));
-
-        this.zBCxMV.getInstMag().getF().setValue(zbMag*Math.cos(zbAng));
-        this.zBCyMV.getInstMag().getF().setValue(zbMag*Math.sin(zbAng));
-        this.zCAxMV.getInstMag().getF().setValue(zcMag*Math.cos(zcAng));
-        this.zCAyMV.getInstMag().getF().setValue(zcMag*Math.sin(zcAng));
-
-    }
-    private Vector calcZ(Vector i1, Vector i2, Vector u){
-        Vector difCurrent = CompCal.dif(i1, i2);
-        Vector res = CompCal.div(u, difCurrent);
-        return res;
+//        this.ua.process(this.uaMV, PNV.getPhsA());
+//        this.ub.process(this.ubMV, PNV.getPhsB());
+//        this.uc.process(this.ucMV, PNV.getPhsC());
+//
+//        PPV.getPhsAB().setInstCVal(CompCal.dif(PNV.getPhsA().getInstCVal(),PNV.getPhsB().getInstCVal()));
+//        PPV.getPhsBC().setInstCVal(CompCal.dif(PNV.getPhsB().getInstCVal(),PNV.getPhsC().getInstCVal()));
+//        PPV.getPhsCA().setInstCVal(CompCal.dif(PNV.getPhsC().getInstCVal(),PNV.getPhsA().getInstCVal()));
+//        Z.getPhsA().setInstCVal(calcZ(A.getPhsA().getInstCVal(),A.getPhsB().getInstCVal(),PPV.getPhsAB().getInstCVal()));
+//        Z.getPhsB().setInstCVal(calcZ(A.getPhsB().getInstCVal(),A.getPhsC().getInstCVal(),PPV.getPhsBC().getInstCVal()));
+//        Z.getPhsC().setInstCVal(calcZ(A.getPhsC().getInstCVal(),A.getPhsA().getInstCVal(),PPV.getPhsCA().getInstCVal()));
+//        double zaMag = Z.getPhsA().getInstCVal().getMag().getF().getValue();
+//        double zaAng = Z.getPhsA().getInstCVal().getAng().getF().getValue();
+//        double zbMag = Z.getPhsA().getInstCVal().getMag().getF().getValue();
+//        double zbAng = Z.getPhsA().getInstCVal().getAng().getF().getValue();
+//        double zcMag = Z.getPhsA().getInstCVal().getMag().getF().getValue();
+//        double zcAng = Z.getPhsA().getInstCVal().getAng().getF().getValue();
+//        this.zABxMV.getInstMag().getF().setValue(zaMag*Math.cos(zaAng));
+//
+//        this.zAByMV.getInstMag().getF().setValue(zaMag*Math.sin(zaAng));
+//
+//        this.zBCxMV.getInstMag().getF().setValue(zbMag*Math.cos(zbAng));
+//        this.zBCyMV.getInstMag().getF().setValue(zbMag*Math.sin(zbAng));
+//        this.zCAxMV.getInstMag().getF().setValue(zcMag*Math.cos(zcAng));
+//        this.zCAyMV.getInstMag().getF().setValue(zcMag*Math.sin(zcAng));
 
     }
+//    private Vector calcZ(Vector i1, Vector i2, Vector u){
+//        Vector difCurrent = CompCal.dif(i1, i2);
+//        Vector res = CompCal.div(u, difCurrent);
+//        return res;
+//
+//    }
 }
 

@@ -1,5 +1,7 @@
 package org.example.iec61850.lodicalNodes.measurement;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.example.iec61850.datatypes.common.Vector;
 import org.example.iec61850.datatypes.measuredVal.SAV;
 import org.example.iec61850.datatypes.measuredVal.WYE;
@@ -9,7 +11,8 @@ import org.example.iec61850.utils.CompCal;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Setter
+@Getter
 public class RMXU extends LN {
 
     private SAV AmpLocPhsA = new SAV();

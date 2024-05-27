@@ -33,8 +33,8 @@ public class ZeroCrossingMethod implements FrequencyMeter{
                 } else {
                     this.freq = 1/Math.abs(currentTimeZeroCrossing - this.prevTimeZeroCrossing)/2;
                     this.prevTimeZeroCrossing = currentTimeZeroCrossing;
-                    System.out.println(this.freq);
-                    System.out.println(counter);
+//                    System.out.println(this.freq);
+//                    System.out.println(counter);
                 }
             }
             this.prev = this.current;
