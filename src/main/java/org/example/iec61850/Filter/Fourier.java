@@ -13,13 +13,13 @@ public class Fourier extends Filter{
     public Attribute<Double> freq = new Attribute<>();
     public Attribute<Double> step = new Attribute<>();
     public Attribute<Double> k = new Attribute<>();
-    public Fourier(int buffsize) {
+    public Fourier(int buffsize, double freq) {
         this.buffSize.setValue(buffsize);
         this.buffer = new MV[buffsize];
         this.buffCnt.setValue(0);
         this.sumRe.setValue(0.0);
         this.sumIm.setValue(0.0);
-        this.freq.setValue(50.0);
+        this.freq.setValue(freq);
         this.step.setValue(0.02/buffsize);
         this.k.setValue(1.0 / buffsize);
         for (int i = 0; i < buffsize; i++) {

@@ -63,12 +63,14 @@ public class MMXU extends LN {
     public MV ucMV = new MV();
     //output
     private FrequencyMeter frq ;
-    public final Filter ia = new Fourier(bufSize);
-    public final Filter ib = new Fourier(bufSize);
-    public final Filter ic = new Fourier(bufSize);
-    public final Filter ua = new Fourier(bufSize);
-    public final Filter ub = new Fourier(bufSize);
-    public final Filter uc = new Fourier(bufSize);
+    private double frequnce = 50.0;
+
+    public final Filter ia = new Fourier(bufSize,frequnce);
+    public final Filter ib = new Fourier(bufSize, frequnce);
+    public final Filter ic = new Fourier(bufSize, frequnce);
+    public final Filter ua = new Fourier(bufSize, frequnce);
+    public final Filter ub = new Fourier(bufSize, frequnce);
+    public final Filter uc = new Fourier(bufSize, frequnce);
 
     public MV zABxMV = new MV();
     public MV zAByMV = new MV();
