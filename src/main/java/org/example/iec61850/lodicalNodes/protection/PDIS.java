@@ -1,5 +1,7 @@
 package org.example.iec61850.lodicalNodes.protection;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.example.iec61850.datatypes.common.Vector;
 import org.example.iec61850.datatypes.controls.INC;
 import org.example.iec61850.datatypes.measuredVal.WYE;
@@ -11,7 +13,8 @@ import org.example.iec61850.datatypes.status.ACT;
 import org.example.iec61850.datatypes.status.SPS;
 import org.example.iec61850.lodicalNodes.common.LN;
 import org.example.iec61850.utils.CompCal;
-
+@Getter
+@Setter
 public class PDIS extends LN {
     private ACD Str = new ACD();
     private ACT Op = new ACT();
@@ -26,6 +29,13 @@ public class PDIS extends LN {
     //input
     public WYE Z = new WYE();
     public SPS BlkZn = new SPS();
+    public PDIS() {
+        OpCntRs.getStVal().setValue(0);
+        Op.getGeneral().setValue(false);
+        Op.getPhsA().setValue(false);
+        Op.getPhsB().setValue(false);
+        Op.getPhsC().setValue(false);
+    }
 
 
     @Override
@@ -41,9 +51,9 @@ public class PDIS extends LN {
         Vector zA = Z.getPhsA().getInstCVal();
         Vector zB = Z.getPhsB().getInstCVal();
         Vector zC = Z.getPhsC().getInstCVal();
-        boolean startA= zA.getMag().getF().getValue() > this.PoRch.getSetMag().getF().getValue()/2;
-        boolean startB= zB.getMag().getF().getValue() > this.PoRch.getSetMag().getF().getValue()/2;
-        boolean startC= zC.getMag().getF().getValue() > this.PoRch.getSetMag().getF().getValue()/2;
+        boolean startA= zA.getMag().getF().getValue() < this.PoRch.getSetMag().getF().getValue()/2;
+        boolean startB= zB.getMag().getF().getValue() < this.PoRch.getSetMag().getF().getValue()/2;
+        boolean startC= zC.getMag().getF().getValue() < this.PoRch.getSetMag().getF().getValue()/2;
         boolean start = startA||startB||startC;
         this.Str.getPhsA().setValue(startA);
         this.Str.getPhsB().setValue(startB);
@@ -64,9 +74,12 @@ public class PDIS extends LN {
         Vector difA = CompCal.dif(zA, center);
         Vector difB = CompCal.dif(zB, center);
         Vector difC = CompCal.dif(zC, center);
-        boolean startA= difA.getMag().getF().getValue() > this.PoRch.getSetMag().getF().getValue()/2;
-        boolean startB= difB.getMag().getF().getValue() > this.PoRch.getSetMag().getF().getValue()/2;
-        boolean startC= difC.getMag().getF().getValue() > this.PoRch.getSetMag().getF().getValue()/2;
+//        System.out.println("dif a= "+difA.getMag().getF().getValue());
+//        System.out.println("dif b= "+difB.getMag().getF().getValue());
+//        System.out.println("dif c= "+difC.getMag().getF().getValue());
+        boolean startA= difA.getMag().getF().getValue() < this.PoRch.getSetMag().getF().getValue()/2;
+        boolean startB= difB.getMag().getF().getValue() < this.PoRch.getSetMag().getF().getValue()/2;
+        boolean startC= difC.getMag().getF().getValue() < this.PoRch.getSetMag().getF().getValue()/2;
         boolean start = startA||startB||startC;
         this.Str.getPhsA().setValue(startA);
         this.Str.getPhsB().setValue(startB);
@@ -83,8 +96,8 @@ public class PDIS extends LN {
         }else {
             OpCntRs.getStVal().setValue(0);
         }
-        System.out.println(OpCntRs.getStVal().getValue()
-                * TmMult.getSetMag().getF().getValue());
+//        System.out.println(OpCntRs.getStVal().getValue()
+//                * TmMult.getSetMag().getF().getValue());
         if (Str.getGeneral().getValue() && (OpCntRs.getStVal().getValue()
                 * TmMult.getSetMag().getF().getValue() > OpDITmmms.getSetVal().getValue())) {
             Op.getPhsA().setValue(true);

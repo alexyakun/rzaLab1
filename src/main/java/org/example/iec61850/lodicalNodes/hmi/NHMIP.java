@@ -60,7 +60,7 @@ public class NHMIP extends LN {
     public void process() {
         if (!frame.isVisible()) frame.setVisible(true);
 
-        if (passCount++ > 100)
+        if (passCount++ > 0)
             datasets.forEach((a, c) -> c.add((Number) a.getDataX().getValue(), (Number) a.getDataY().getValue(), false));
 
         /* Период обновления */
@@ -75,6 +75,7 @@ public class NHMIP extends LN {
             });
             setCurrentRange(currentRange);
             datasets.values().forEach(Series::fireSeriesChanged);
+
         }
     }
 
@@ -112,6 +113,7 @@ public class NHMIP extends LN {
         process();
         Double maxX = points.stream().max((o1, o2) -> (int) (o1.getValue1() - o2.getValue1())).get().getValue1();
         Double maxy = points.stream().max((o1, o2) -> (int) (o1.getValue2() - o2.getValue2())).get().getValue2();
+
         double max = Math.max(maxX, maxy);
         if (max > currentRange) {
             currentRange = max;

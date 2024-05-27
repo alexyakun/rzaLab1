@@ -33,7 +33,7 @@ public class NHMIExample {
 
         NHMIP nhmip = new NHMIP();
         logicalNodes.add(nhmip);
-        nhmip.addSignals(new NHMISignal("TestSignal", signal1, signal2));
+
 
 
         /**
@@ -49,7 +49,7 @@ public class NHMIExample {
         }
         nhmip.drawCharacteristic("Characteristic", pointsList);
 
-
+        nhmip.addSignals(new NHMISignal("TestSignal", signal1, signal2));
         for (double i = 1; i < 101; i++) {
             signal1.setValue(1 * i);
             signal2.setValue(2 * i);

@@ -19,8 +19,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class SvStart {
     private static final List<LN> logicalNode = new ArrayList<>();
+    private static final double TIME_MULTIPLIER = 20.0 / 80;
     public static void main(String[] args) {
-        MMXU mmxu = new MMXU();
+        MMXU mmxu = new MMXU(TIME_MULTIPLIER);
         logicalNode.add(mmxu);
 
 

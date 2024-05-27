@@ -74,8 +74,8 @@ public class PTOC extends LN {
         } else {
             OpCntRs.getStVal().setValue(0);
         }
-                System.out.println(OpCntRs.getStVal().getValue()
-                * TmMult.getSetMag().getF().getValue());
+//                System.out.println(OpCntRs.getStVal().getValue()
+//                * TmMult.getSetMag().getF().getValue());
         if (Str.getGeneral().getValue() && (OpCntRs.getStVal().getValue()
                 * TmMult.getSetMag().getF().getValue() > OpDiTmms.getSetVal().getValue())) {
             Op.getPhsA().setValue(true);

@@ -1,5 +1,7 @@
 package org.example.iec61850.lodicalNodes.block;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.example.iec61850.datatypes.common.Attribute;
 import org.example.iec61850.datatypes.controls.INC;
 import org.example.iec61850.datatypes.measuredVal.SEQ;
@@ -9,7 +11,8 @@ import org.example.iec61850.datatypes.status.ACT;
 import org.example.iec61850.datatypes.status.SPG;
 import org.example.iec61850.datatypes.status.SPS;
 import org.example.iec61850.lodicalNodes.common.LN;
-
+@Getter
+@Setter
 public class RPSB extends LN {
     //Start(power swing detected)
     private ACD Str = new ACD();
@@ -24,13 +27,17 @@ public class RPSB extends LN {
     private SPG NgEna = new SPG();
 
     public SEQ seq = new SEQ();
+    public RPSB(){
+        BlkZn.getStVal().setValue(true);
+    }
     @Override
     public void process() {
         double negSeqVal = seq.getC2().getInstCVal().getMag().getF().getValue();
-        if(NgEna.getStVal().getValue() && negSeqVal < SwgVal.getSetMag().getF().getValue()){
-            BlkZn.getStVal().setValue(true);
-        } else {
+        if(NgEna.getStVal().getValue() && negSeqVal > SwgVal.getSetMag().getF().getValue()){
             BlkZn.getStVal().setValue(false);
         }
+//        else {
+//            BlkZn.getStVal().setValue(false);
+//        }
     }
 }
