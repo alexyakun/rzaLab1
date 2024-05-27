@@ -1,5 +1,7 @@
 package org.example.iec61850.lodicalNodes.measurement;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.example.iec61850.Filter.Fourier;
 import org.example.iec61850.datatypes.measuredVal.HWYE;
 import org.example.iec61850.datatypes.measuredVal.MV;
@@ -7,7 +9,8 @@ import org.example.iec61850.lodicalNodes.common.LN;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Getter
+@Setter
 public class MHAI extends LN {
     private final static int BUFFSIZE = 80;
     private final static int AMOUNT_HARMONIC = 10;

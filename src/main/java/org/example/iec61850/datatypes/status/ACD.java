@@ -13,6 +13,14 @@ public class ACD extends MyData {
 //Directional protection activation information
     private Attribute<Boolean> general = new Attribute<>();
     private Attribute<DirGeneral> dirGeneral = new Attribute<>();
+    public ACD(){
+    }
+    public ACD(boolean general){
+        this.general.setValue(general);
+        this.phsA.setValue(general);
+        this.phsB.setValue(general);
+        this.phsC.setValue(general);
+    }
 
     public enum DirGeneral {
         UNKNOWN,

@@ -8,4 +8,9 @@ import lombok.Setter;
 public class Vector extends MyData {
     private AnalogueValue mag = new AnalogueValue();
     private AnalogueValue ang = new AnalogueValue();
+    public Vector(){}
+    public Vector(double mag, double ang){
+        this.mag.getF().setValue(mag);
+        this.ang.getF().setValue(ang);
+    }
 }

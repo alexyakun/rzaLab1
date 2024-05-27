@@ -3,6 +3,7 @@ package org.example.iec61850.lodicalNodes.protection;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.iec61850.datatypes.common.Attribute;
+import org.example.iec61850.datatypes.measuredVal.SAV;
 import org.example.iec61850.datatypes.measuredVal.SEQ;
 import org.example.iec61850.datatypes.settings.ASG;
 import org.example.iec61850.datatypes.settings.ENG;
@@ -11,6 +12,7 @@ import org.example.iec61850.lodicalNodes.common.LN;
 import org.example.iec61850.datatypes.controls.INC;
 import org.example.iec61850.datatypes.status.ACD;
 import org.example.iec61850.datatypes.status.ACT;
+import org.example.iec61850.lodicalNodes.measurement.RMXU;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -43,8 +45,9 @@ public class PTOC extends LN {
     public Attribute<Boolean> accelEnable = new Attribute<>();
     public Attribute<Boolean> accel = new Attribute<>();
     //INPUT
-    public ACD dir = new ACD();
-    public SEQ seq = new SEQ();
+    public SAV difA;
+    public SAV difB;
+    public SAV difC;
     public PTOC() {
         OpCntRs.getStVal().setValue(0);
         Op.getGeneral().setValue(false);
@@ -55,33 +58,21 @@ public class PTOC extends LN {
 
     @Override
     public void process() {
-        if (accelEnable.getValue()&& accel.getValue()){OpDiTmms.getSetVal().setValue(0);}
-        boolean start = seq.getC3().getInstCVal().getMag().getF().getValue() >= StrVal.getSetMag().getF().getValue();
-       // System.out.println(start);
-        Str.getGeneral().setValue(start);
-       // System.out.println(Str.getPhsA().getValue());
-        Str.getPhsA().setValue(start);
-        Str.getPhsB().setValue(start);
-        Str.getPhsC().setValue(start);
-        switch (this.DirMod.getSetVal().getValue()) {
-            case FORWARD -> {if (dir.getGeneral().getValue()) {operate();}}
-            case BOTH -> operate();
+        if(difA.getInstMag().getF().getValue() > StrVal.getSetMag().getF().getValue()){
+            this.Op.getPhsA().setValue(true);
+        } else{
+            this.Op.getPhsA().setValue(false);
+        }
+        if(difB.getInstMag().getF().getValue() > StrVal.getSetMag().getF().getValue()){
+            this.Op.getPhsB().setValue(true);
+        } else{
+            this.Op.getPhsB().setValue(false);
+        }
+        if(difC.getInstMag().getF().getValue() > StrVal.getSetMag().getF().getValue()){
+            this.Op.getPhsC().setValue(true);
+        } else{
+            this.Op.getPhsC().setValue(false);
         }
     }
-    private void operate(){
-        if (Str.getGeneral().getValue()) {
-            OpCntRs.getStVal().setValue(OpCntRs.getStVal().getValue() + 1);
-        } else {
-            OpCntRs.getStVal().setValue(0);
-        }
-//                System.out.println(OpCntRs.getStVal().getValue()
-//                * TmMult.getSetMag().getF().getValue());
-        if (Str.getGeneral().getValue() && (OpCntRs.getStVal().getValue()
-                * TmMult.getSetMag().getF().getValue() > OpDiTmms.getSetVal().getValue())) {
-            Op.getPhsA().setValue(true);
-            Op.getPhsB().setValue(true);
-            Op.getPhsC().setValue(true);
-            Op.getGeneral().setValue(true);
-        }
-    }
+
 }
