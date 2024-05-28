@@ -2,6 +2,7 @@ package org.example.iec61850.lodicalNodes.measurement;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.example.iec61850.Filter.AdaptiveFourier;
 import org.example.iec61850.Filter.Fourier;
 import org.example.iec61850.datatypes.measuredVal.HWYE;
 import org.example.iec61850.datatypes.measuredVal.MV;
@@ -12,21 +13,21 @@ import java.util.List;
 @Getter
 @Setter
 public class MHAI extends LN {
-    private final static int BUFFSIZE = 20;
+    private final static int BUFFSIZE = (int) (45/0.001);
     private final static int AMOUNT_HARMONIC = 10;
     private MV Hz = new MV();
     private HWYE HA = new HWYE(AMOUNT_HARMONIC);
-    public List<Fourier> fourierIa = new ArrayList<>();
-    public List<Fourier> fourierIb = new ArrayList<>();
-    public List<Fourier> fourierIc = new ArrayList<>();
+    public List<AdaptiveFourier> fourierIa = new ArrayList<>();
+    public List<AdaptiveFourier> fourierIb = new ArrayList<>();
+    public List<AdaptiveFourier> fourierIc = new ArrayList<>();
 
 
     public MHAI(){
         this.Hz.getInstMag().getF().setValue(50.0);
         for (int i = 1; i <= AMOUNT_HARMONIC; i++) {
-            fourierIa.add(new Fourier(BUFFSIZE, Hz.getInstMag().getF().getValue() * i));
-            fourierIb.add(new Fourier(BUFFSIZE, Hz.getInstMag().getF().getValue() * i));
-            fourierIc.add(new Fourier(BUFFSIZE, Hz.getInstMag().getF().getValue() * i));
+            fourierIa.add(new AdaptiveFourier(BUFFSIZE, Hz.getInstMag().getF().getValue() * i));
+            fourierIb.add(new AdaptiveFourier(BUFFSIZE, Hz.getInstMag().getF().getValue() * i));
+            fourierIc.add(new AdaptiveFourier(BUFFSIZE, Hz.getInstMag().getF().getValue() * i));
         }
     }
     //input

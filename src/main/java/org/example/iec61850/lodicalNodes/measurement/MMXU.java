@@ -2,6 +2,7 @@ package org.example.iec61850.lodicalNodes.measurement;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.example.iec61850.Filter.AdaptiveFourier;
 import org.example.iec61850.Filter.Filter;
 import org.example.iec61850.Filter.Fourier;
 import org.example.iec61850.datatypes.common.Attribute;
@@ -52,7 +53,7 @@ public class MMXU extends LN {
     private WYE Z = new WYE();
 
     private Attribute<Double> timeMult = new Attribute<>();
-    public static int bufSize = 20;
+    public static int bufSize = (int) (45/0.001);
     //input
 
     public MV iaMV = new MV();
@@ -65,12 +66,12 @@ public class MMXU extends LN {
     private FrequencyMeter frq ;
     private double frequnce = 50.0;
 
-    public final Filter ia = new Fourier(bufSize,frequnce);
-    public final Filter ib = new Fourier(bufSize, frequnce);
-    public final Filter ic = new Fourier(bufSize, frequnce);
-    public final Filter ua = new Fourier(bufSize, frequnce);
-    public final Filter ub = new Fourier(bufSize, frequnce);
-    public final Filter uc = new Fourier(bufSize, frequnce);
+    public final Filter ia = new AdaptiveFourier(bufSize,frequnce);
+    public final Filter ib = new AdaptiveFourier(bufSize, frequnce);
+    public final Filter ic = new AdaptiveFourier(bufSize, frequnce);
+    public final Filter ua = new AdaptiveFourier(bufSize, frequnce);
+    public final Filter ub = new AdaptiveFourier(bufSize, frequnce);
+    public final Filter uc = new AdaptiveFourier(bufSize, frequnce);
 
     public MV zABxMV = new MV();
     public MV zAByMV = new MV();
