@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 public class MHAI extends LN {
-    private final static int BUFFSIZE = 80;
+    private final static int BUFFSIZE = 20;
     private final static int AMOUNT_HARMONIC = 10;
     private MV Hz = new MV();
     private HWYE HA = new HWYE(AMOUNT_HARMONIC);

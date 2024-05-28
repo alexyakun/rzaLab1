@@ -16,6 +16,14 @@ public class ACT extends MyData {
     private Attribute<Boolean> phsB = new Attribute<>();
     private Attribute<Boolean> phsC = new Attribute<>();
     private Attribute<Boolean> neut = new Attribute<>();
+
     private Quality q = new Quality();
     private TimeStamp t = new TimeStamp();
+    public ACT(){}
+    public ACT(boolean general){
+        this.phsA.setValue(general);
+        this.phsB.setValue(general);
+        this.phsC.setValue(general);
+        this.general.setValue(general);
+    }
 }

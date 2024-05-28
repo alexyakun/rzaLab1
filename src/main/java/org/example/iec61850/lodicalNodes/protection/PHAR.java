@@ -30,17 +30,20 @@ public class PHAR extends LN {
         CMV baseHarmA = inputI.getPhsAHar().get(0);
         CMV baseHarmB = inputI.getPhsBHar().get(0);
         CMV baseHarmC = inputI.getPhsCHar().get(0);
-        if(partOfHighHarmonic(hiHarmA,baseHarmA) > PhStr.getSetMag().getF().getValue() ){
+        if(partOfHighHarmonic(hiHarmA,baseHarmA) > PhStr.getSetMag().getF().getValue() &&
+        baseHarmA.getInstCVal().getMag().getF().getValue()>10){
             this.Str.getPhsA().setValue(true);
         }else {
             this.Str.getPhsA().setValue(false);
         }
-        if(partOfHighHarmonic(hiHarmB,baseHarmB) > PhStr.getSetMag().getF().getValue() ){
+        if(partOfHighHarmonic(hiHarmB,baseHarmB) > PhStr.getSetMag().getF().getValue() &&
+                baseHarmB.getInstCVal().getMag().getF().getValue()>10){
             this.Str.getPhsB().setValue(true);
         }else {
             this.Str.getPhsB().setValue(false);
         }
-        if(partOfHighHarmonic(hiHarmC,baseHarmC) > PhStr.getSetMag().getF().getValue() ){
+        if(partOfHighHarmonic(hiHarmC,baseHarmC) > PhStr.getSetMag().getF().getValue() &&
+                baseHarmC.getInstCVal().getMag().getF().getValue()>10){
             this.Str.getPhsC().setValue(true);
         }else {
             this.Str.getPhsC().setValue(false);
