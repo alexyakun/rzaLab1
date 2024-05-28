@@ -24,8 +24,8 @@ public class DifProtectionStarter {
     private static final int NUMBER_OF_CONNECTION = 4;
     private static final int NUMBER_OF_BLOCKED_HARMONIC = 5;
     private static final double PART_OF_HIGH_HARM_IN_BASE_HARM = 0.02;
-    private static final double SET_FOR_PTOC = 10;
-    private static final double SET_MIN_DIFF = 100;
+    private static final double SET_FOR_PTOC = 5000;
+    private static final double SET_MIN_DIFF = 1200;
     public static void main(String[] args) throws Exception {
         LSVS lsvs = new LSVS();
         lsvs.setPath(path);
@@ -126,14 +126,19 @@ public class DifProtectionStarter {
         diffCurrent.addSignals("BUS_B", new NHMISignal("dif_cur_B",pdif.difB.getInstMag().getF()));
         diffCurrent.addSignals("BUS_C", new NHMISignal("dif_cur_C", pdif.difC.getInstMag().getF()));
         logicalNode.add(diffCurrent);
+        NHMI ptocOper = new NHMI();
+        ptocOper.addSignals("BUS_A", new NHMISignal("ptoc_A", ptoc.getOp().getPhsA()));
+        ptocOper.addSignals("BUS_B", new NHMISignal("ptoc_B",ptoc.getOp().getPhsB()));
+        ptocOper.addSignals("BUS_C", new NHMISignal("ptoc_C", ptoc.getOp().getPhsC()));
+        logicalNode.add(ptocOper);
 
         NHMIP nhmipA = new NHMIP();
         NHMIP nhmipB = new NHMIP();
 //        NHMIP nhmipC = new NHMIP();
         nhmipA.drawCharacteristic("1 ступени",
-                makeCharacteristic(0.53, 200));
+                makeCharacteristic(0.53, SET_MIN_DIFF));
         nhmipB.drawCharacteristic("1 ступени",
-                makeCharacteristic(0.53, 200));
+                makeCharacteristic(0.53, SET_MIN_DIFF));
         nhmipA.addSignals(new NHMISignal("BUS_A", rmxu.getAmpLocResA().getInstMag().getF(), rmxu.getAmpLocPhsA().getInstMag().getF()));
         nhmipB.addSignals(new NHMISignal("BUS_B", rmxu.getAmpLocResB().getInstMag().getF(), rmxu.getAmpLocPhsB().getInstMag().getF()));
      //   nhmipC.addSignals(new NHMISignal("BUS_C",rmxu.getAmpLocResC().getInstMag().getF(), rmxu.getAmpLocPhsC().getInstMag().getF()));
